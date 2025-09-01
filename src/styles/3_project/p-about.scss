@@ -1,0 +1,53 @@
+/* src/styles/3_project/_p-about.scss */
+
+@import "../variables";
+.p-about {
+  &__image-wrapper {
+    position: relative;
+    width: 100%; /* 横幅いっぱいに */
+  }
+
+  &__image {
+    display: block;
+    width: 100%; /* 親要素に合わせて横幅いっぱいに */
+    height: auto;
+  }
+
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    color: $color-text-body;
+
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    padding: 0 24px;
+  }
+
+  &__title {
+    font-family: "Yu Mincho", "游明朝", serif;
+    font-size: 3.2rem;
+    font-weight: normal;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    white-space: nowrap;
+    letter-spacing: 0.3em;
+  }
+
+  &__text-block {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  &__text {
+    font-family: "Yu Mincho", "游明朝", serif;
+    font-size: 1.6rem;
+    line-height: 3;
+    letter-spacing: 0.3em;
+  }
+}
