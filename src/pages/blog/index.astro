@@ -1,0 +1,53 @@
+---
+// src/pages/blog/index.astro
+import client from '../../lib/microcms/client';
+import type { MicroCMSListResponse } from 'microcms-js-sdk';
+
+const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}.${month}.${day}`;
+};
+
+export type Blog = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  title: string;
+  content: string;
+  category: {
+    id: string;
+    name: string;
+  };
+};
+
+// ブログカテゴリーで絞り込み、全件取得
+const blogList = await client.get<MicroCMSListResponse<Blog>>({
+  endpoint: 'news',
+  queries: {
+    filters: 'category[equals]yok1szxu1',
+  },
+});
+
+---
+
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ブログ一覧</title>
+</head>
+
+<h1>ブログ一覧</h1>
+<ul class="list-container">
+  {blogList.contents.map((item) => (
+    <li>
+      <a href={`/news/${item.id}`}>{item.title}</a>
+      <span class="date">{formatDate(item.updatedAt)}</span>
+    </li>
+  ))}
+</ul>
