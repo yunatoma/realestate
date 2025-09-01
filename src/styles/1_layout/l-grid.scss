@@ -1,0 +1,29 @@
+/* l-grid.scss */
+.l-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* SPでのデフォルトは1列 */
+  gap: 40px; /* 要素間の余白 */
+
+  /* PC向けブレークポイント */
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr); /* PCでは3列にする場合の例 */
+  }
+}
+
+.l-grid--4cols {
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(
+      4,
+      1fr
+    ); /* サービス紹介など4列にする場合の例 */
+  }
+}
+
+.l-grid--2cols {
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* お問い合わせ下の会社情報など2列にする場合の例 */
+  }
+}

@@ -1,0 +1,8 @@
+/* l-container.scss */
+.l-container {
+  max-width: 1000px; /* デザインカンプから判断したコンテンツの最大幅 */
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 24px; /* スマートフォンなどでの左右の余白 */
+}
