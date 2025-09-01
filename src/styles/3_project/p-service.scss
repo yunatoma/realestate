@@ -1,0 +1,106 @@
+/* src/styles/3_project/_p-service.scss */
+
+@import "../variables";
+
+.p-service {
+  padding: $spacing-lg 0;
+  background-color: $color-bg-light;
+
+  &__heading {
+    text-align: center;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__title {
+    font-family: "Yu Mincho", "游明朝", serif;
+    font-size: 3.6rem;
+    color: $color-primary;
+  }
+
+  &__subtitle {
+    font-size: 1.6rem;
+    color: $color-text-body;
+    letter-spacing: 0.3em;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  &__item--overlap {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+    height: 350px;
+  }
+
+  &__item--reverse {
+    flex-direction: row-reverse;
+  }
+
+  &__image-wrapper {
+    flex: 0 0 50%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  &__caption {
+    padding-top: 8px;
+  }
+
+  &__text-box {
+    background-color: $color-primary;
+    color: $color-text-white-body;
+    padding: 24px 24px 24px 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    width: 50%; /* ボックスの幅を50%に拡大 */
+    bottom: 0;
+    right: 0;
+  }
+
+  &__item--reverse &__image-wrapper {
+    margin-right: 0;
+  }
+
+  &__item--reverse &__text-box {
+    left: 0;
+    right: auto;
+    padding: 24px 200px 24px 24px;
+  }
+
+  &__item--reverse &__caption {
+    text-align: right;
+  }
+
+  &__item-title {
+    font-family: "Yu Mincho", "游明朝", serif;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__item-subtitle {
+    font-family: "Yu Mincho", "游明朝", serif;
+    font-size: 1.4rem;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__item-text {
+    font-family: "Yu Mincho", "游明朝", serif;
+    font-size: 1.6rem;
+    line-height: 1.8;
+  }
+}
