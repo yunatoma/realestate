@@ -1,0 +1,35 @@
+---
+// src/components/sections/FirstView.astro
+---
+
+<section class="p-first-view">
+  <div class="p-first-view__bg">
+    <img 
+      src="/img/firstview-01.webp" 
+      alt="三角屋根の建造物" 
+      class="p-first-view__bg-image is-active" 
+    />
+    <img 
+      src="/img/firstview-02.webp" 
+      alt="藁の屋根の建造物群" 
+      class="p-first-view__bg-image" 
+    />
+    <img 
+      src="/img/firstview-03.webp" 
+      alt="木造の温泉宿" 
+      class="p-first-view__bg-image" 
+    />
+  </div>
+  <div class="p-first-view__inner">
+    <div class="p-first-view__content">
+      <p class="p-first-view__text">
+        <span class="p-first-view__text-main">永遠も、瞬間も、</span>
+        <span class="p-first-view__text-sub">あなたと共に。</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../js/firstview-slider.js';
+</script>

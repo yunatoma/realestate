@@ -1,0 +1,58 @@
+/* src/styles/3_project/_p-first-view.scss */
+
+.p-first-view {
+  height: 100vh; /* ビューポートいっぱいに表示 */
+  position: relative;
+  display: flex;
+  justify-content: center; /* 水平方向中央揃え */
+  align-items: center; /* 垂直方向中央揃え */
+  overflow: hidden; /* 背景画像がはみ出すのを防ぐ */
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 画像がアスペクト比を保ったままコンテナを埋める */
+    z-index: -1; /* 文字コンテンツより背面に配置 */
+  }
+
+  &__bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* デフォルトで非表示 */
+    transition: opacity 1s ease-in-out; /* 1秒かけてふわっと表示 */
+    z-index: -1;
+
+    &.is-active {
+      opacity: 1; /* is-activeクラスがある時のみ表示 */
+      z-index: 0; /* 重なり順を前面に */
+    }
+  }
+
+  &__inner {
+    text-align: center; /* テキストを中央揃え */
+  }
+
+  &__content {
+    color: #fff; /* 文字色を白に */
+  }
+
+  &__text {
+    font-family: "Yu Mincho", "游明朝", serif;
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 70px;
+    white-space: nowrap; /* 行の折り返しを防ぐ */
+    letter-spacing: 0.3em;
+  }
+
+  &__text-sub {
+    display: block; /* 改行 */
+  }
+}
