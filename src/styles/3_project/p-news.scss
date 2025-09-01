@@ -1,0 +1,114 @@
+/* src/styles/3_project/_p-news.scss */
+
+@import "../variables";
+
+.p-news {
+  padding: 80px 0;
+  background-color: $color-bg-light;
+
+  &__heading {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  &__title {
+    margin-bottom: 6px;
+    font-family: "Yu Mincho", "游明朝", serif;
+    font-size: 3.6rem;
+    font-weight: normal;
+    color: $color-primary;
+  }
+
+  &__subtitle {
+    font-size: 20px;
+    color: $color-text-body;
+    letter-spacing: 0.3em;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  &__block {
+    flex: 1;
+    background-color: $color-text-white-body;
+  }
+
+  &__block-title {
+    margin: 0;
+    padding: 9px 0px 8px 20px;
+    background-color: $color-primary;
+    font-family: "Yu Mincho", "游明朝", serif;
+    font-size: 2rem;
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0 20px;
+    margin: 0;
+  }
+
+  &__item {
+    padding: 12px 0;
+    border-bottom: 1px solid $color-secondary;
+    display: flex;
+    align-items: center;
+    align-items: flex-start;
+
+    &:first-child {
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  &__date {
+    font-size: 1.4rem;
+    margin-right: 20px;
+    color: $color-text-body;
+    white-space: nowrap;
+  }
+
+  &__link {
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: $color-text-body;
+  }
+
+  &__more {
+    display: flex;
+    justify-content: flex-end;
+    &-text {
+      width: 120px;
+      color: $color-secondary;
+      display: flex;
+      margin-top: 17px;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: bolder;
+      padding: 0 20px;
+
+      flex-direction: column;
+      text-decoration: none;
+    }
+    &-arrow {
+      margin-top: -14px;
+    }
+  }
+
+  // ブログのスタイル調整
+  &__block:nth-child(2) {
+    background-color: #fff;
+
+    .p-news__block-title {
+      color: $color-text-white-body;
+    }
+
+    .p-news__item {
+      border-bottom: 1px solid $color-secondary;
+    }
+  }
+}

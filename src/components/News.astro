@@ -1,0 +1,94 @@
+---
+// src/components/sections/news.astro
+import client from "../lib/microcms/client";
+import type { MicroCMSListResponse } from 'microcms-js-sdk';
+
+// 日付フォーマット関数
+const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  return `${year}.${month}`;
+};
+
+export type News = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  title: string;
+  content: string;
+  category: {
+    id: string;
+    name: string;
+  };
+};
+
+// microCMSからお知らせとブログのデータを取得
+// お知らせカテゴリーで絞り込み
+const newsList = await client.get<MicroCMSListResponse<News>>({
+  endpoint: 'news',
+  queries: {
+    filters: 'category[equals]dic21ntqug7',
+  },
+});
+
+// ブログカテゴリーで絞り込み
+const blogList = await client.get<MicroCMSListResponse<News>>({
+  endpoint: 'news',
+  queries: {
+    filters: 'category[equals]yok1szxu1',
+  },
+});
+
+// microCMSからお知らせとブログのデータを取得
+const news = await client.get<MicroCMSListResponse<News>>({ endpoint: 'news' });
+
+---
+
+<section class="p-news">
+  <div class="p-news__inner l-container">
+    <div class="p-news__heading">
+      <h2 class="p-news__title">NEWS</h2>
+      <p class="p-news__subtitle">お知らせ</p>
+    </div>
+    <div class="p-news__content">
+      <div class="p-news__block">
+        <h3 class="p-news__block-title p-news__block-title--notice">お知らせ</h3>
+        <ul class="p-news__list">
+          {newsList.contents.slice(0, 3).map((item) => (
+            <li class="p-news__item">
+              <span class="p-news__date">{formatDate(item.updatedAt)}</span>
+              <a href={`/news/${item.id}`} class="p-news__link">{item.title}</a>
+            </li>
+          ))}
+        </ul>
+        <div class="p-news__more">
+            <a href="/news" class="p-news__more-text">
+              more
+            <img src="/public/img/more_arrow.svg" class="p-news__more-arrow" alt="More Arrow">
+            </a>
+        </div>
+      </div>
+      <div class="p-news__block">
+        <h3 class="p-news__block-title p-news__block-title--blog">ブログ</h3>
+        <ul class="p-news__list">
+          {blogList.contents.slice(0, 3).map((item) => (
+            <li class="p-news__item">
+              <span class="p-news__date">{formatDate(item.updatedAt)}</span>
+              <a href={`/news/${item.id}`} class="p-news__link">{item.title}</a>
+            </li>
+          ))}
+        </ul>
+        <div class="p-news__more">
+            <a href="/blog" class="p-news__more-text">
+              more
+            <img src="/public/img/more_arrow.svg" class="p-news__more-arrow" alt="More Arrow">
+            </a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>

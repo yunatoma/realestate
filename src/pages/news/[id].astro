@@ -1,0 +1,40 @@
+---
+import client from '../../lib/microcms/client';
+import type { MicroCMSListResponse } from 'microcms-js-sdk';
+
+export async function getStaticPaths() {
+  const data = await client.get<MicroCMSListResponse<any>>({ endpoint: 'news' });
+  
+  return data.contents.map(item => ({
+    params: { id: item.id },
+  }));
+}
+
+const { id } = Astro.params;
+const newsDetail = await client.get<any>({
+  endpoint: 'news',
+  contentId: id,
+});
+
+// コンテンツをUTF-8に変換
+const encodedContent = encodeURIComponent(newsDetail.content);
+
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{newsDetail.title}</title>
+</head>
+
+<div class="news-detail-container">
+  <h1>{newsDetail.title}</h1>
+  <p class="date">{newsDetail.updatedAt}</p>
+  <div class="content">
+    <Fragment set:html={decodeURIComponent(encodedContent)} />
+  </div>
+</div>
+
+<style>
+  /* ページごとのスタイル */
+</style>
