@@ -1,0 +1,90 @@
+/* base.scss */
+
+// -------------------------------------------------------------
+// 1. html, body
+// -------------------------------------------------------------
+html {
+  // フォントサイズの基準を10pxに設定（rem計算をしやすくするため）
+  font-size: 62.5%;
+  // スクロール時の挙動を滑らかにする
+  scroll-behavior: smooth;
+}
+
+body {
+  // 全体のフォント、文字色、背景色
+  font-family: "Yu Mincho", "游明朝", "YuMincho", serif;
+  font-size: 1.6rem; // 16px
+  line-height: 1.8;
+  color: #000000; // 適切な文字色を設定してください
+  background-color: #ffffff; // 適切な背景色を設定してください
+  // フォントを滑らかに表示
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// -------------------------------------------------------------
+// 2. Headings (h1 - h6)
+// -------------------------------------------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Yu Mincho", "游明朝", "YuMincho", serif; // 見出しも同じフォントに
+  line-height: 1.2;
+  font-weight: bold;
+  margin-top: 2.4rem;
+  margin-bottom: 1.6rem;
+}
+
+h1 {
+  font-size: 3.6rem;
+}
+
+h2 {
+  font-size: 3rem;
+  letter-spacing: 0.3em;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 2.4rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.8rem;
+}
+
+h6 {
+  font-size: 1.6rem;
+}
+
+// -------------------------------------------------------------
+// 3. Typography & Text
+// -------------------------------------------------------------
+p {
+  margin-bottom: 1em;
+}
+
+ul,
+ol {
+  margin-bottom: 1.6rem;
+}
+
+li {
+  line-height: 1.5;
+}
+
+// -------------------------------------------------------------
+// 5. Images
+// -------------------------------------------------------------
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
