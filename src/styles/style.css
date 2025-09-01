@@ -1,0 +1,31 @@
+/* 変数ファイルのインポート */
+@import "_variables.scss";
+
+/* FLOCSSレイヤーのインポート */
+
+/* 0_foundation */
+@import "0_foundation/reset.scss";
+@import "0_foundation/base.scss";
+
+/* 1_layout */
+@import "1_layout/l-header.scss";
+@import "1_layout/l-footer.scss";
+@import "1_layout/l-container.scss";
+@import "1_layout/l-grid.scss";
+
+/* 2_component */
+/* @import "2_component/c-button.scss";
+@import "2_component/c-card.scss"; */
+
+/* 3_project */
+@import "3_project/p-first-view.scss";
+@import "3_project/p-about.scss";
+@import "3_project/p-service.scss";
+@import "3_project/p-news.scss";
+@import "3_project/p-works.scss";
+@import "3_project/p-company.scss";
+@import "3_project/p-contact.scss";
+
+/* 4_utility */
+/* @import "4_utility/u-margin.scss";
+@import "4_utility/u-text-align.scss"; */
