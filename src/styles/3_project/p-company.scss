@@ -1,0 +1,92 @@
+@import "../variables";
+
+.company {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: $color-text-white-body;
+
+  &__title {
+    color: $color-primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    font-size: 20px;
+    color: $color-text-body;
+    letter-spacing: 0.3em;
+  }
+
+  &__content {
+    margin: 3em auto 0 auto;
+    max-width: 950px;
+    height: 460px;
+    display: flex;
+    gap: 2rem;
+    position: relative;
+  }
+
+  &__map {
+    z-index: 2;
+    min-width: 300px;
+    iframe {
+      width: 600px;
+      height: 400px;
+    }
+  }
+
+  &__info {
+    background-color: $color-primary;
+    color: #fff;
+    padding: 20px;
+    width: 500px;
+    height: 262px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-align: left;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    &-text-group {
+      margin-left: 180px;
+      margin-top: 30px;
+    }
+
+    &-text-company {
+      font-size: 20px;
+      margin-bottom: 7px;
+    }
+    &-text-addres {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+    &-text-tel {
+      margin-bottom: 20px;
+    }
+    &-text-tel-label {
+      font-size: 16px;
+    }
+    &-text-tel-number {
+      font-size: 25px;
+    }
+    s &-text-mail {
+      font-size: 16px;
+    }
+  }
+}
+
+// レスポンシブ
+@media screen and (max-width: 768px) {
+  .company__content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .company__info {
+    position: static;
+    width: 100%;
+    text-align: center;
+  }
+}
