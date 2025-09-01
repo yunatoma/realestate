@@ -1,0 +1,62 @@
+/* src/styles/1_layout/_l-header.scss */
+
+.l-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  color: #fff;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    font-family: "Yu Mincho", "游明朝", serif;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &__nav {
+    // ...
+  }
+
+  &__list {
+    display: flex;
+    gap: 32px;
+  }
+
+  &__link {
+    font-family: "Yu Mincho", "游明朝", serif;
+    font-size: 1.6rem;
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+
+    // ホバー時に下線を表示するための擬似要素
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px; // 文字からの距離
+      width: 100%;
+      height: 1px; // 線の太さ
+      background-color: currentColor; // 文字と同じ色
+      transform: scaleX(0); // 初期状態では非表示
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover::after {
+      transform: scaleX(1); // ホバー時に表示
+    }
+  }
+}
