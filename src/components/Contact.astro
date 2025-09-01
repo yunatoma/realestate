@@ -1,0 +1,116 @@
+---
+---
+
+<div class="p-contact">
+  <div class="p-contact__header">
+    <h2 class="p-contact__title">CONTACT</h2>
+    <p class="p-contact__subtitle">お問い合わせ</p>
+    <p class="p-contact__header-text">3営業日以内にメールにてご連絡いたします。*は入力必須項目となります。</p>
+  </div>
+
+  <form class="p-contact-form" id="contactForm">
+    <div class="p-contact-form__group p-contact-form__group--name">
+      <label class="p-contact-form__label" for="name">お名前*</label>
+      <input class="p-contact-form__input" type="text" id="name" name="name" placeholder="例：北村太郎" required />
+    </div>
+
+    <div class="p-contact-form__group p-contact-form__group--gender">
+      <label class="p-contact-form__label">性別</label>
+      <div class="p-contact-form__options-group p-contact-form__options-group--gender">
+        <label class="p-contact-form__option"><input type="radio" name="gender" value="男性" /> 男性</label>
+        <label class="p-contact-form__option"><input type="radio" name="gender" value="女性" /> 女性</label>
+      </div>
+    </div>
+
+    <div class="p-contact-form__group p-contact-form__group--email">
+      <label class="p-contact-form__label" for="email">メールアドレス*</label>
+      <input class="p-contact-form__input" type="email" id="email" name="email" placeholder="例：aaaaaaa@gmail.com" required />
+    </div>
+
+    <div class="p-contact-form__group p-contact-form__group--contact">
+      <label class="p-contact-form__label" for="type">問い合わせ種別</label>
+      <select class="p-contact-form__select" id="type" name="type">
+        <option value="家づくりについて">家づくりについて</option>
+        <option value="その他">その他</option>
+      </select>
+    </div>
+
+    <div class="p-contact-form__group">
+      <label class="p-contact-form__label" for="content">内容*</label>
+      <textarea class="p-contact-form__textarea" id="content" name="content" rows="6" required></textarea>
+    </div>
+
+    <div class="p-contact-form__group p-contact-form__group--checkbox">
+      <label class="p-contact-form__label p-contact-form__label--required">何を見て当社HPを知りましたか？（複数回答可）*</label>
+      <div class="p-contact-form__options-grid">
+        <label class="p-contact-form__option"><input type="checkbox" name="source" value="インターネット" /> インターネット</label>
+        <label class="p-contact-form__option"><input type="checkbox" name="source" value="チラシ" /> チラシ</label>
+        <label class="p-contact-form__option"><input type="checkbox" name="source" value="住宅展示場" /> 住宅展示場</label>
+        <label class="p-contact-form__option"><input type="checkbox" name="source" value="看板" /> 看板</label>
+        <label class="p-contact-form__option"><input type="checkbox" name="source" value="各種SNS" /> 各種SNS</label>
+        <label class="p-contact-form__option"><input type="checkbox" name="source" value="紹介" /> 紹介</label>
+        <label class="p-contact-form__option"><input type="checkbox" name="source" value="通りがかり" /> 通りがかり</label>
+        <label class="p-contact-form__option"><input type="checkbox" name="source" value="その他" /> その他</label>
+      </div>
+    </div>
+
+    <a class="p-contact-form__privacy-title">個人情報保護方針</a>
+    <div class="p-contact-form__group p-contact-form__group--privacy">
+      <div class="p-contact-form__privacy-content">
+        <p>個人情報取扱事業者の氏名又は名称(法24条1項1号)<br>株式会社 北村建設興業</p>
+        <p>個人情報の取り扱い<br>弊社は、個人情報保護に関連する法令を遵守し、お客様からご提供いただく個人情報を、細心の注意を払って取り扱っております。このプライバシーポリシーでは、当社におけるお客様の個人情報の取扱いについてご説明しております。・・・</p>
+      </div>
+    </div>
+
+    <button class="p-contact-form__submit" type="submit">内容に同意して送信</button>
+  </form>
+</div>
+
+<script>
+  // IDを使ってフォーム要素を取得
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  
+  // フォームが存在するか確認
+  if (form) {
+    const submitButton = form.querySelector('.p-contact-form__submit') as HTMLButtonElement;
+
+    form.addEventListener('submit', async (event) => {
+      // ブラウザのデフォルトのフォーム送信をキャンセル
+      event.preventDefault();
+
+      // ボタンを無効化して重複送信を防ぐ
+      submitButton.disabled = true;
+      submitButton.textContent = '送信中...';
+
+      // FormDataオブジェクトを作成
+      const formData = new FormData(form);
+
+      console.log("date: ", formData)
+
+      try {
+        // fetch APIを使って非同期でデータを送信
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: formData, // FormDataを直接渡すと、正しいContent-Typeが自動的に設定される
+        });
+
+        if (response.ok) {
+          // 成功したら、完了ページにリダイレクト
+          window.location.href = '/contact/thanks';
+        } else {
+          // 失敗した場合の処理
+          const errorData = await response.json();
+          console.error('フォーム送信に失敗しました:', errorData.message);
+          alert('送信に失敗しました。再度お試しください。');
+        }
+      } catch (error) {
+        console.error('エラーが発生しました:', error);
+        alert('エラーが発生しました。通信環境をご確認ください。');
+      } finally {
+        // 成功/失敗にかかわらずボタンを元に戻す
+        submitButton.disabled = false;
+        submitButton.textContent = '内容に同意して送信';
+      }
+    });
+  }
+</script>
