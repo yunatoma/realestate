@@ -1,4 +1,5 @@
 ---
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import client from '../../lib/microcms/client';
 import type { MicroCMSListResponse } from 'microcms-js-sdk';
 
@@ -12,43 +13,32 @@ const formatDate = (dateStr: string) => {
 
 export type News = {
   id: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  revisedAt: string;
   title: string;
-  content: string;
-  category: {
-    id: string;
-    name: string;
-  };
+  updatedAt: string;
 };
 
 // お知らせカテゴリーで絞り込み、全件取得
 const newsList = await client.get<MicroCMSListResponse<News>>({
   endpoint: 'news',
-  queries: {
-    filters: 'category[equals]dic21ntqug7',
-  },
+  queries: { filters: 'category[equals]dic21ntqug7' },
 });
+
+const pageTitle = "お知らせ一覧";
+const pageDescription = "株式会社北村建設興業からのお知らせ一覧です。";
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>お知らせ一覧</title>
-</head>
-
-<h1>お知らせ一覧</h1>
-<ul class="list-container">
-  {newsList.contents.map((item) => (
-    <li>
-      <a href={`/news/${item.id}`}>{item.title}</a>
-      <span class="date">{formatDate(item.updatedAt)}</span>
-    </li>
-  ))}
-</ul>
-
-<style>
-/* 任意のスタイル */
-</style>
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="p-list">
+    <h1 class="p-list__title">{pageTitle}</h1>
+    <ul class="p-list__container">
+      {newsList.contents.map((item) => (
+        <li class="p-list__item">
+          <a href={`/news/${item.id}`} class="p-list__link">
+            <span class="p-list__date">{formatDate(item.updatedAt)}</span>
+            <span class="p-list__item-title">{item.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>
