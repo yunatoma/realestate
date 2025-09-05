@@ -1,6 +1,7 @@
 ---
 import client from '../../lib/microcms/client';
 import type { MicroCMSListResponse } from 'microcms-js-sdk';
+export const prerender = true;
 
 export async function getStaticPaths() {
   const data = await client.get<MicroCMSListResponse<any>>({ endpoint: 'news' });
