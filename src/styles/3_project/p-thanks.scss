@@ -1,43 +1,41 @@
-.p-contact-thanks {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+@import "../variables";
+.p-thanks {
+  padding: 120px 20px;
   text-align: center;
-  padding: 20px;
 }
 
-.p-contact-thanks__content {
+.p-thanks__content {
   max-width: 600px;
+  margin: 0 auto;
   background: #fff;
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.p-contact-thanks__title {
+.p-thanks__title {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #333;
 }
 
-.p-contact-thanks__text {
+.p-thanks__text {
   font-size: 1rem;
   line-height: 1.6;
   color: #666;
   margin-bottom: 30px;
 }
 
-.p-contact-thanks__button {
+.p-thanks__button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: $color-primary;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
-.p-contact-thanks__button:hover {
-  background-color: #0056b3;
+.p-thanks__button:hover {
+  background-color: darken($color-primary, 10%);
 }
