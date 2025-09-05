@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.5.1",
     "@astrojs/vercel": "^8.2.7",
     "astro": "^5.13.2",
     "microcms-js-sdk": "^3.2.0",
