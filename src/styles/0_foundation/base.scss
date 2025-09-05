@@ -20,6 +20,7 @@ body {
   // フォントを滑らかに表示
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; // 横スクロールを禁止
 }
 
 // -------------------------------------------------------------
