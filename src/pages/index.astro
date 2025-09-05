@@ -1,6 +1,6 @@
 ---
 // src/pages/index.astro
-import Header from '../components/Header.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import FirstView from '../components/FirstView.astro';
 import About from '../components/About.astro';
 import Service from '../components/Service.astro';
@@ -8,29 +8,17 @@ import Works from '../components/Works.astro';
 import News from '../components/News.astro';
 import Company from '../components/Company.astro';
 import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/style.css'; 
+
+const pageTitle = "トップページ";
+const pageDescription = "株式会社北村建設興業の公式サイトです。最新のお知らせや事業内容、施工実績などを掲載しています。";
 ---
 
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>株式会社北村建設興業 | トップページ</title>
-    <meta name="description" content="株式会社北村建設興業の公式サイトです。" />
-  </head>
-  <body>
-    <Header />
-    <main>
-      <FirstView />
-      <About />
-      <Service />
-      <Works />
-      <News />
-      <Company />
-      <Contact />
-    </main>
-    <Footer />
-  </body>
-</html>
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <FirstView />
+  <About />
+  <Service />
+  <Works />
+  <News />
+  <Company />
+  <Contact />
+</BaseLayout>

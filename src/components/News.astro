@@ -67,7 +67,7 @@ const news = await client.get<MicroCMSListResponse<News>>({ endpoint: 'news' });
         <div class="p-news__more">
             <a href="/news" class="p-news__more-text">
               more
-            <img src="/img/more_arrow.svg" class="p-news__more-arrow" alt="More Arrow">
+            <img src="/img/more_arrow.svg" class="p-news__more-arrow" alt="矢印の画像">
             </a>
         </div>
       </div>
@@ -77,14 +77,14 @@ const news = await client.get<MicroCMSListResponse<News>>({ endpoint: 'news' });
           {blogList.contents.slice(0, 3).map((item) => (
             <li class="p-news__item">
               <span class="p-news__date">{formatDate(item.updatedAt)}</span>
-              <a href={`/news/${item.id}`} class="p-news__link">{item.title}</a>
+              <a href={`/blog/${item.id}`} class="p-news__link">{item.title}</a>
             </li>
           ))}
         </ul>
         <div class="p-news__more">
             <a href="/blog" class="p-news__more-text">
               more
-            <img src="/img/more_arrow.svg" class="p-news__more-arrow" alt="More Arrow">
+            <img src="/img/more_arrow.svg" class="p-news__more-arrow" alt="矢印の画像">
             </a>
         </div>
         

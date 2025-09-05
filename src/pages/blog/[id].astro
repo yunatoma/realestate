@@ -1,41 +1,39 @@
 ---
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import client from '../../lib/microcms/client';
 import type { MicroCMSListResponse } from 'microcms-js-sdk';
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const data = await client.get<MicroCMSListResponse<any>>({ endpoint: 'news' });
-  
-  return data.contents.map(item => ({
-    params: { id: item.id },
-  }));
+  const data = await client.get<MicroCMSListResponse<any>>({
+    endpoint: 'news',
+    queries: { filters: 'category[equals]yok1szxu1' } 
+  });
+  
+  return data.contents.map(item => ({
+    params: { id: item.id },
+  }));
 }
 
 const { id } = Astro.params;
 const newsDetail = await client.get<any>({
-  endpoint: 'news',
-  contentId: id,
+  endpoint: 'news',
+  contentId: id,
 });
 
-// コンテンツをUTF-8に変換
-const encodedContent = encodeURIComponent(newsDetail.content);
+// descriptionを生成
+const contentText = newsDetail.content.replace(/(<([^>]+)>)/gi, "").replace(/\n/g, '');
+const description = contentText.substring(0, 120) + '...';
 
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>{newsDetail.title}</title>
-</head>
+<BaseLayout title={newsDetail.title} description={description}>
+  <div class="p-blog-detail l-container">
+    <h1 class="p-blog-detail__title">{newsDetail.title}</h1>
+    <p class="p-blog-detail__date">{new Date(newsDetail.updatedAt).toLocaleDateString('ja-JP')}</p>
+    <div class="p-blog-detail__content">
+      <Fragment set:html={newsDetail.content} />
+    </div>
+  </div>
+</BaseLayout>
 
-<div class="news-detail-container">
-  <h1>{newsDetail.title}</h1>
-  <p class="date">{newsDetail.updatedAt}</p>
-  <div class="content">
-    <Fragment set:html={decodeURIComponent(encodedContent)} />
-  </div>
-</div>
-
-<style>
-  /* ページごとのスタイル */
-</style>
